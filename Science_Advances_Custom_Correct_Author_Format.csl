@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0"
+       class="in-text" default-locale="en-US">
+
+  <info>
+    <title>Science Advances Custom - Correct Author Format</title>
+    <title-short>Science Advances</title-short>
+    <id>http://www.zotero.org/styles/science-advances-custom-correct-v1</id>
+    <updated>2026-09-16T00:00:00+09:00</updated>
+    <summary>Science Advances-style journal references: all authors, initials before surnames, full article title, abbreviated italic journal, bold volume, hyphenated page range, and year in parentheses.</summary>
+    <category citation-format="numeric"/>
+    <category field="science"/>
+  </info>
+
+  <macro name="author">
+    <names variable="author">
+      <name name-as-sort-order="false"
+            sort-separator=" "
+            initialize-with=". "
+            delimiter=", "
+            delimiter-precedes-last="always"
+            and="never"/>
+    </names>
+  </macro>
+
+  <macro name="title">
+    <text variable="title" suffix="."/>
+  </macro>
+
+  <macro name="journal">
+    <text variable="container-title" form="short" font-style="italic"/>
+  </macro>
+
+  <macro name="year">
+    <date variable="issued" prefix=" (" suffix=")">
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <macro name="pages">
+    <text variable="page"/>
+  </macro>
+
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout vertical-align="sup" delimiter=",">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+
+  <bibliography et-al-min="999"
+                et-al-use-first="999"
+                second-field-align="flush"
+                entry-spacing="0"
+                line-spacing="1">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout suffix=".">
+      <text variable="citation-number" suffix=". "/>
+      <text macro="author" suffix=", "/>
+      <text macro="title" suffix=" "/>
+      <text macro="journal" suffix=" "/>
+      <text variable="volume" font-weight="bold" suffix=", "/>
+      <text macro="pages" suffix=" "/>
+      <text macro="year"/>
+    </layout>
+  </bibliography>
+</style>
