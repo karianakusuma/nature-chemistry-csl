@@ -37,7 +37,7 @@
   </macro>
 
   <macro name="doi">
-    <text variable="DOI" prefix="https://doi.org/" font-weight="bold"/>
+    <text variable="DOI" prefix="https://doi.org/"/>
   </macro>
 
   <citation collapse="citation-number">
@@ -83,7 +83,7 @@
       </choose>
       <choose>
         <if variable="DOI">
-          <text macro="doi" prefix=", " font-weight="bold"/>
+          <text macro="doi" prefix=", "/>
         </if>
       </choose>
     </layout>
