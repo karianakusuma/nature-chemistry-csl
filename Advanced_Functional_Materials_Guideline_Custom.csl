@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="in-text" default-locale="en-US">
+  <info>
+    <title>Advanced Functional Materials - Author Guideline (Chicago-like)</title>
+    <id>http://www.zotero.org/styles/advanced-functional-materials-author-guideline-chicago-custom</id>
+    <link href="http://www.zotero.org/styles/advanced-functional-materials-author-guideline-chicago-custom" rel="self"/>
+    <link href="https://advanced.onlinelibrary.wiley.com/hub/journal/16163028/author-guidelines" rel="documentation"/>
+    <author>
+      <name>Custom CSL adaptation</name>
+    </author>
+    <category citation-format="numeric"/>
+    <category field="chemistry"/>
+    <issn>1616-301X</issn>
+    <eissn>1616-3028</eissn>
+    <summary>Custom adaptation of the supplied AFM author-guideline examples: full article and journal titles, up to six authors listed in full; for more than six, list the first three followed by et al.; year in parentheses; DOI URL when available.</summary>
+    <updated>2026-10-01T00:00:00+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+
+  <macro name="author">
+    <names variable="author" et-al-min="7" et-al-use-first="3" et-al-use-last="false">
+      <name name-as-sort-order="all" sort-separator=", " initialize-with=". " delimiter=", " delimiter-precedes-last="always"/>
+      <et-al term="et-al"/>
+      <substitute>
+        <names variable="editor"/>
+        <text variable="title"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="issued">
+    <date variable="issued">
+      <date-part name="year"/>
+    </date>
+  </macro>
+
+  <macro name="doi">
+    <choose>
+      <if variable="DOI">
+        <text variable="DOI" prefix="https://doi.org/"/>
+      </if>
+      <else-if variable="URL">
+        <text variable="URL"/>
+      </else-if>
+    </choose>
+  </macro>
+
+  <macro name="journal-details">
+    <group delimiter=" ">
+      <text variable="container-title" font-style="italic"/>
+      <choose>
+        <if variable="volume">
+          <group delimiter=" ">
+            <text variable="volume"/>
+            <choose>
+              <if variable="issue">
+                <text variable="issue" prefix="no. "/>
+              </if>
+            </choose>
+            <group prefix="(" suffix=")">
+              <text macro="issued"/>
+            </group>
+          </group>
+        </if>
+        <else>
+          <group prefix="(" suffix=")">
+            <text macro="issued"/>
+          </group>
+        </else>
+      </choose>
+    </group>
+  </macro>
+
+  <citation>
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout delimiter="," vertical-align="sup">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+
+  <bibliography second-field-align="flush" entry-spacing="1" line-spacing="1">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout>
+      <text variable="citation-number" suffix=". "/>
+      <choose>
+        <if type="article-journal">
+          <group delimiter=" ">
+            <text macro="author" suffix=", "/>
+            <group delimiter=" ">
+              <text variable="title" prefix="“" suffix=",”"/>
+              <text macro="journal-details"/>
+            </group>
+            <choose>
+              <if variable="page">
+                <text variable="page" prefix=": "/>
+              </if>
+              <else-if variable="article-number">
+                <text variable="article-number" prefix=": "/>
+              </else-if>
+            </choose>
+            <text macro="doi" prefix=". "/>
+          </group>
+        </if>
+        <else>
+          <group delimiter=". ">
+            <text macro="author"/>
+            <text variable="title" quotes="true"/>
+            <text variable="container-title" font-style="italic"/>
+            <text macro="issued"/>
+            <text macro="doi"/>
+          </group>
+        </else>
+      </choose>
+    </layout>
+  </bibliography>
+</style>
